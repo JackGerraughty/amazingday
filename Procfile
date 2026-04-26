@@ -1,1 +1,1 @@
-web: python3 -m http.server ${PORT:-8080}
+web: nginx -c /app/nginx.conf -g 'daemon off;'
