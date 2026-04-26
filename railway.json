@@ -1,1 +1,8 @@
-{ "build": { "builder": "nixpacks" }, "deploy": { "startCommand": "npx serve . -p $PORT" } }
+{
+    "build": {
+      "builder": "nixpacks"
+    },
+    "deploy": {
+      "startCommand": "python3 -m http.server ${PORT:-8080}"
+    }
+  }
