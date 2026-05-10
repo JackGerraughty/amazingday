@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Open Me</title>
+  <title>Happy Mother's Day 🌸</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Petit+Formal+Script&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html, body { width: 100%; height: 100%; overflow: hidden; }
-
     body {
       font-family: 'Cormorant Garamond', serif;
       display: flex; align-items: center; justify-content: center;
@@ -17,7 +15,6 @@
       background: #1a0828;
     }
 
-    /* ── SKY ── */
     .sky {
       position: fixed; inset: 0; z-index: 0;
       background: linear-gradient(
@@ -28,18 +25,13 @@
       );
     }
 
-    /* STARS */
     .stars { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-    .star {
-      position: absolute; background: white; border-radius: 50%;
-      animation: twinkle ease-in-out infinite;
-    }
+    .star { position: absolute; background: white; border-radius: 50%; animation: twinkle ease-in-out infinite; }
     @keyframes twinkle {
       0%,100% { opacity: 0.15; transform: scale(0.8); }
       50%      { opacity: 1;   transform: scale(1.3); }
     }
 
-    /* MOON */
     .moon {
       position: fixed; top: 7%; right: 13%; z-index: 2;
       width: 68px; height: 68px; border-radius: 50%;
@@ -52,10 +44,8 @@
       50%      { box-shadow: 0 0 55px 20px rgba(245,200,100,0.38), 0 0 110px 45px rgba(245,180,80,0.18); }
     }
 
-    /* HILLS */
     .hills { position: fixed; bottom: 0; left: 0; right: 0; z-index: 3; pointer-events: none; }
 
-    /* GLOW ORBS */
     .glow-tl {
       position: fixed; top: -120px; left: -120px; z-index: 2; pointer-events: none;
       width: 380px; height: 380px; border-radius: 50%;
@@ -73,12 +63,8 @@
       50%      { transform: scale(1.12); opacity: 1; }
     }
 
-    /* PARTICLES */
     .particles { position: fixed; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; }
-    .particle {
-      position: absolute; top: -30px;
-      animation: drift linear infinite; opacity: 0;
-    }
+    .particle { position: absolute; top: -30px; animation: drift linear infinite; opacity: 0; }
     @keyframes drift {
       0%   { opacity: 0; transform: translateY(0) translateX(0) rotate(0deg) scale(1); }
       8%   { opacity: 1; }
@@ -86,24 +72,18 @@
       100% { opacity: 0; transform: translateY(105vh) translateX(var(--dx)) rotate(var(--rot)) scale(0.8); }
     }
 
-    /* ════════════════════════════
-       ENVELOPE SCREEN
-    ════════════════════════════ */
+    /* ── ENVELOPE SCREEN ── */
     #envelope-screen {
       position: fixed; inset: 0; z-index: 20;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 28px;
+      align-items: center; justify-content: center; gap: 28px;
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
-    #envelope-screen.hidden {
-      opacity: 0; visibility: hidden; pointer-events: none;
-    }
+    #envelope-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
     .env-hint {
       font-family: 'Petit Formal Script', cursive;
-      color: rgba(255, 230, 200, 0.85);
-      font-size: 1.4rem;
+      color: rgba(255,230,200,0.85); font-size: 1.4rem;
       letter-spacing: 0.05em;
       animation: hintFloat 2.8s ease-in-out infinite;
       text-shadow: 0 2px 12px rgba(0,0,0,0.4);
@@ -113,7 +93,6 @@
       50%      { transform: translateY(-6px); }
     }
 
-    /* envelope wrapper — clickable */
     .envelope-btn {
       background: none; border: none; cursor: pointer;
       padding: 0; outline: none;
@@ -121,37 +100,27 @@
       filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
       transition: transform 0.2s ease;
     }
-    .envelope-btn:hover { transform: scale(1.04); }
+    .envelope-btn:hover { transform: scale(1.04); animation: none; }
     .envelope-btn:active { transform: scale(0.97); }
     @keyframes envFloat {
       0%,100% { transform: translateY(0) rotate(-.5deg); }
       50%      { transform: translateY(-12px) rotate(.5deg); }
     }
-    /* freeze float on hover */
-    .envelope-btn:hover { animation: none; }
 
-    /* ── envelope SVG pieces ── */
     .env-flap {
       transform-origin: top center;
       transition: transform 0.6s cubic-bezier(.4,0,.2,1);
     }
-    .envelope-btn.opening .env-flap {
-      transform: rotateX(180deg);
-    }
+    .envelope-btn.opening .env-flap { transform: rotateX(180deg); }
 
-    /* letter peeking out on open */
     .env-letter {
       transform: translateY(0px);
       transition: transform 0.7s 0.3s cubic-bezier(.22,.8,.36,1);
       transform-origin: bottom center;
     }
-    .envelope-btn.opening .env-letter {
-      transform: translateY(-54px);
-    }
+    .envelope-btn.opening .env-letter { transform: translateY(-54px); }
 
-    /* ════════════════════════════
-       MAIN CONTENT
-    ════════════════════════════ */
+    /* ── MAIN CONTENT ── */
     #main-content {
       position: relative; z-index: 10;
       display: flex; flex-direction: column; align-items: center;
@@ -160,12 +129,8 @@
       transition: opacity 1s 0.3s ease, transform 1s 0.3s cubic-bezier(.16,1,.3,1);
       pointer-events: none;
     }
-    #main-content.visible {
-      opacity: 1; transform: scale(1) translateY(0);
-      pointer-events: all;
-    }
+    #main-content.visible { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
 
-    /* GLASS PANEL */
     .glass {
       background: rgba(255,245,238,0.08);
       backdrop-filter: blur(22px) saturate(1.5);
@@ -188,7 +153,6 @@
     }
     @keyframes shimmer { 0%,100% { opacity: 0; } 50% { opacity: 1; } }
 
-    /* BUNNY */
     .scene-wrap {
       width: 200px; height: 200px;
       position: relative; margin: 0 auto 8px;
@@ -213,7 +177,6 @@
       55%      { transform: rotate(-20deg); }
     }
 
-    /* FLOATING HEARTS */
     .floating-love {
       position: absolute; top: -10px; left: 50%;
       transform: translateX(-50%);
@@ -229,7 +192,6 @@
       100% { opacity: 0; transform: translateY(-60px) scale(1.05); }
     }
 
-    /* TYPOGRAPHY */
     .label {
       font-family: 'Petit Formal Script', cursive;
       color: #f5c97a; font-size: 1rem; letter-spacing: 0.04em;
@@ -245,14 +207,16 @@
       margin-top: 14px; font-size: 1.05rem; font-style: italic;
       font-weight: 300; color: rgba(255,220,200,0.72); line-height: 1.65;
     }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
     .divider {
       width: 100%; height: 1px;
       background: linear-gradient(to right, transparent, rgba(255,200,160,0.32), transparent);
       margin: 20px 0;
     }
-    .flower-row {
-      display: flex; gap: 12px; justify-content: center; margin-top: 4px;
-    }
+    .flower-row { display: flex; gap: 12px; justify-content: center; margin-top: 4px; }
     .fi {
       font-size: 1.4rem; display: inline-block;
       animation: petalSway 3s ease-in-out infinite;
@@ -278,8 +242,7 @@
   <div class="moon"></div>
 
   <div class="hills">
-    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"
-         preserveAspectRatio="none" style="width:100%;display:block;">
+    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
       <path d="M0,200 C200,120 400,260 600,180 C800,100 1000,220 1200,160 C1320,130 1400,180 1440,160 L1440,320 L0,320 Z" fill="rgba(10,4,28,0.65)"/>
       <path d="M0,240 C180,180 360,270 560,220 C740,170 900,260 1100,210 C1260,170 1380,230 1440,210 L1440,320 L0,320 Z" fill="rgba(8,3,22,0.82)"/>
       <path d="M0,278 C120,258 280,298 440,278 C600,258 760,294 920,276 C1080,258 1260,288 1440,274 L1440,320 L0,320 Z" fill="rgba(5,2,14,0.94)"/>
@@ -288,55 +251,34 @@
 
   <div class="particles" id="particles"></div>
 
-  <!-- ═══════════════════════════
-       ENVELOPE SCREEN
-  ═══════════════════════════ -->
+  <!-- ENVELOPE SCREEN -->
   <div id="envelope-screen">
-    <p class="env-hint">open it for a surprise</p>
+    <p class="env-hint">a little something for you ✦</p>
 
     <button class="envelope-btn" id="envBtn" aria-label="Open envelope">
       <svg width="300" height="220" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- envelope body shadow -->
         <ellipse cx="150" cy="214" rx="110" ry="8" fill="rgba(0,0,0,0.25)"/>
-
-        <!-- envelope body -->
-        <rect x="20" y="80" width="260" height="130" rx="10" fill="#f9e8f0"/>
         <rect x="20" y="80" width="260" height="130" rx="10" fill="url(#envGrad)"/>
-
-        <!-- bottom triangle folds -->
         <path d="M20 210 L150 140 L280 210 Z" fill="#f0d0e0"/>
         <path d="M20 80 L150 140 L20 210 Z" fill="#e8c0d8"/>
         <path d="M280 80 L150 140 L280 210 Z" fill="#eecce0"/>
-
-        <!-- letter peeking (behind flap) -->
         <g class="env-letter">
           <rect x="80" y="30" width="140" height="100" rx="6" fill="#fff8f2"/>
           <rect x="80" y="30" width="140" height="100" rx="6" fill="url(#letterGrad)" opacity="0.4"/>
-          <!-- letter lines -->
           <line x1="100" y1="58" x2="200" y2="58" stroke="#f4a0b0" stroke-width="2" stroke-linecap="round"/>
           <line x1="100" y1="72" x2="200" y2="72" stroke="#f4a0b0" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
           <line x1="100" y1="86" x2="170" y2="86" stroke="#f4a0b0" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
-          <!-- little heart on letter -->
           <text x="150" y="118" text-anchor="middle" font-size="22" fill="#e8709a">♡</text>
         </g>
-
-        <!-- flap (folds open) -->
         <g class="env-flap">
           <path d="M20 80 L150 155 L280 80 Z" fill="#f4c8dc"/>
           <path d="M20 80 L150 155 L280 80 Z" fill="url(#flapGrad)" opacity="0.5"/>
-          <!-- flap edge highlight -->
           <path d="M20 80 L150 155 L280 80" stroke="#e8a8c8" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
         </g>
-
-        <!-- wax seal -->
         <circle cx="150" cy="148" r="18" fill="#c8506a"/>
         <circle cx="150" cy="148" r="14" fill="#d4607a"/>
         <text x="150" y="154" text-anchor="middle" font-size="14" fill="#fff0f4">♡</text>
-
-        <!-- envelope top edge -->
         <path d="M20 80 Q20 70 30 70 L270 70 Q280 70 280 80" fill="#fde0ee" stroke="#ecc0d8" stroke-width="1"/>
-
         <defs>
           <linearGradient id="envGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#fde8f4"/>
@@ -357,9 +299,7 @@
     <p class="env-hint" style="font-size:1rem; margin-top:-8px;">tap to open ♡</p>
   </div>
 
-  <!-- ═══════════════════════════
-       MAIN CONTENT
-  ═══════════════════════════ -->
+  <!-- MAIN CONTENT -->
   <div id="main-content">
     <div class="glass">
 
@@ -451,10 +391,10 @@
         </div>
       </div>
 
-      <span class="label">a little something for you ✦</span>
-      <h1>Hope You Have An<br/><em>Amazing Day</em> Today</h1>
+      <span class="label">with all my love ✦</span>
+      <h1><em>Happy Mother's Day</em><br/>to the best mom ever</h1>
       <div class="divider"></div>
-      <p class="sub">Wishing you nothing but warmth, smiles,<br/>and all the things that make you happy ♡</p>
+      <p class="sub">Thank you for your endless love, warmth,<br/>and everything you do I love you so much ♡</p>
 
       <div class="flower-row">
         <span class="fi">🌷</span>
@@ -467,7 +407,6 @@
   </div>
 
   <script>
-    // ── STARS ──
     const starsEl = document.getElementById('stars');
     for (let i = 0; i < 90; i++) {
       const s = document.createElement('div');
@@ -477,7 +416,6 @@
       starsEl.appendChild(s);
     }
 
-    // ── PARTICLES ──
     const pEl = document.getElementById('particles');
     const emojis = ['🌸','✨','💫','🌷','💕','⭐'];
     const plain  = ['✦','·','✧','★','♡'];
@@ -487,26 +425,17 @@
       const isEmoji = Math.random() > 0.5;
       const src = isEmoji ? emojis : plain;
       p.textContent = src[Math.floor(Math.random()*src.length)];
-      const dx = (Math.random()-.5)*180;
-      const rot = (Math.random()-.5)*540;
+      const dx = (Math.random()-.5)*180, rot = (Math.random()-.5)*540;
       const sz = isEmoji ? 10+Math.random()*14 : 10+Math.random()*18;
       p.style.cssText = `left:${Math.random()*100}vw;font-size:${sz}px;color:${isEmoji?'inherit':'rgba(255,220,180,0.7)'};--dx:${dx}px;--rot:${rot}deg;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*14}s;`;
       pEl.appendChild(p);
     }
 
-    // ── ENVELOPE CLICK ──
-    const envBtn    = document.getElementById('envBtn');
-    const envScreen = document.getElementById('envelope-screen');
-    const mainContent = document.getElementById('main-content');
-
-    envBtn.addEventListener('click', () => {
-      // animate open
-      envBtn.classList.add('opening');
-
-      // after flap opens, fade out envelope and reveal card
+    document.getElementById('envBtn').addEventListener('click', () => {
+      document.getElementById('envBtn').classList.add('opening');
       setTimeout(() => {
-        envScreen.classList.add('hidden');
-        mainContent.classList.add('visible');
+        document.getElementById('envelope-screen').classList.add('hidden');
+        document.getElementById('main-content').classList.add('visible');
       }, 700);
     });
   </script>
